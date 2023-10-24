@@ -9,6 +9,7 @@
         android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_foto"
             android:layout_width="140dp"
             android:layout_height="160dp"
             android:src="@color/black"
@@ -53,6 +54,7 @@
                     android:textSize="16sp"/>
 
             <TextView
+                    android:id="@+id/tv_nama"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nama"
@@ -70,6 +72,7 @@
                     android:textSize="16sp"/>
 
             <TextView
+                    android:id="@+id/tv_nim"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nomor Induk Mahasiswa"
@@ -87,6 +90,7 @@
                     android:textSize="16sp"/>
 
             <TextView
+                    android:id="@+id/tv_prodi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Prodi"
@@ -104,6 +108,7 @@
                     android:textSize="16sp"/>
 
             <TextView
+                    android:id="@+id/tv_telpon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nomor Telepon"
@@ -121,6 +126,7 @@
                     android:textSize="16sp"/>
 
             <TextView
+                    android:id="@+id/tv_alamat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Alamat"

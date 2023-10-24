@@ -1,4 +1,20 @@
 package com.example.sipami.api.viewmodel
 
-class User {
+import android.net.Uri
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.example.sipami.api.repository.__user___
+import com.example.sipami.models.mProfil
+import com.example.sipami.models.mUser
+
+class User : ViewModel() {
+    private val createUserResult = MutableLiveData<Boolean>()
+    private val userRepository = __user___()
+
+    fun createUserWithEmailAndPassword(email: String, password: String) {
+        userRepository.createUserWithEmailAndPassword(email, password) { isSuccess ->
+            createUserResult.value = isSuccess
+        }
+    }
 }

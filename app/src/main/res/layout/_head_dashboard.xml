@@ -41,15 +41,6 @@
                     android:text="Nama"/>
 
             <TextView
-                    android:id="@+id/tv_jurusan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="4dp"
-                    android:text="Jurusan"/>
-
-            <TextView
                     android:id="@+id/tv_nim"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -57,6 +48,15 @@
                     android:textColor="@color/black"
                     android:maxLines="1"
                     android:text="NIM"/>
+
+            <TextView
+                    android:id="@+id/tv_jurusan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="4dp"
+                    android:text="Jurusan"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

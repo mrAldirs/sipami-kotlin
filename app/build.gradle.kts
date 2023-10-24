@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -49,10 +50,11 @@ dependencies {
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("com.getbase:floatingactionbutton:1.10.1")
-    implementation ("com.google.firebase:firebase-firestore-ktx:24.6.1")
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation ("com.google.firebase:firebase-firestore-ktx:24.9.0")
     implementation("com.google.firebase:firebase-analytics-ktx")
-    implementation ("com.google.android.gms:play-services-auth:20.5.0")
-    implementation ("com.google.firebase:firebase-storage:20.2.0")
+    implementation ("com.google.android.gms:play-services-auth:20.7.0")
+    implementation ("com.google.firebase:firebase-storage:20.3.0")
     implementation ("com.google.firebase:firebase-auth-ktx")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 }
