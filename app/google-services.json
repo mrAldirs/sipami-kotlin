@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "993120660964",
+    "project_id": "surat-399606",
+    "storage_bucket": "surat-399606.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993120660964:android:d8214c6c7252d5d7d36bf1",
+        "android_client_info": {
+          "package_name": "com.example.sipami"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhUH3hJpqSA3WEnr1ne2FL4nTO4qzJr5g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993120660964:android:6e7306464ae408b9d36bf1",
+        "android_client_info": {
+          "package_name": "com.example.surat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhUH3hJpqSA3WEnr1ne2FL4nTO4qzJr5g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
