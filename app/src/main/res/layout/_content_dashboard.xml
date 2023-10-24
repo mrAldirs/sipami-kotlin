@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        android:id="@+id/_content_dashboard"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+        <LinearLayout
+                android:id="@+id/btn_jadwal"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:orientation="vertical"
+                android:gravity="center">
+            
+            <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_calendar"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Jadwal"/>
+        </LinearLayout>
+
+        <Space
+                android:layout_width="30dp"
+                android:layout_height="match_parent"/>
+
+        <LinearLayout
+                android:id="@+id/btn_riwayat"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
+            <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_history"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Riwayat"/>
+        </LinearLayout>
+
+        <Space
+                android:layout_width="30dp"
+                android:layout_height="match_parent"/>
+
+        <LinearLayout
+                android:id="@+id/btn_kontak"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
+            <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_contact"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textAlignment="center"
+                    android:text="Kontak Dosen"/>
+        </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginVertical="16dp"
+            android:layout_below="@+id/linear1">
+
+        <LinearLayout
+                android:id="@+id/btn_surat"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
+            <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_letter"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textAlignment="center"
+                    android:text="Pengajuan Surat"/>
+        </LinearLayout>
+
+        <Space
+                android:layout_width="30dp"
+                android:layout_height="match_parent"/>
+
+        <LinearLayout
+                android:id="@+id/btn_kegiatan"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
+            <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_kegiatan"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Kegiatan"/>
+        </LinearLayout>
+
+        <Space
+                android:layout_width="30dp"
+                android:layout_height="match_parent"/>
+
+        <LinearLayout
+                android:id="@+id/btn_akademik"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
+            <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_academic"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textAlignment="center"
+                    android:text="Kalender Akademik"/>
+        </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</RelativeLayout>

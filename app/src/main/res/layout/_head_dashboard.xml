@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/_head_dashboard"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="24dp"
+            app:cardBackgroundColor="#4EC0ED"
+            app:cardCornerRadius="24dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_foto"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_marginVertical="16dp"
+                android:layout_marginStart="24dp"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="124dp"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="24dp">
+
+            <TextView
+                    android:id="@+id/tv_nama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:maxLines="1"
+                    android:text="Nama"/>
+
+            <TextView
+                    android:id="@+id/tv_jurusan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="4dp"
+                    android:text="Jurusan"/>
+
+            <TextView
+                    android:id="@+id/tv_nim"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/black"
+                    android:maxLines="1"
+                    android:text="NIM"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

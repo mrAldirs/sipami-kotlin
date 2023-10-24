@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/_form_profil"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#00FFFFFF">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ins_img"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginBottom="8dp"
+                app:civ_border_width="1dp"
+                app:civ_border_color="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/akun"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btn_choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_edit"
+                android:backgroundTint="@color/purple_700"
+                android:layout_gravity="end|bottom"
+                android:tint="@color/white"/>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profil Mahasiswa"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:background="#00FFFFFF"
+            android:layout_marginTop="16dp"
+            android:paddingHorizontal="16dp"
+            android:layout_gravity="center_horizontal"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ins_nama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:hint="Nama Lengkap"
+                android:inputType="text"
+                android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ins_nim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nomor Induk Mahasiswa (NIM)"
+                android:textSize="14sp"
+                android:inputType="number"
+                android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="16dp"
+            app:cardCornerRadius="0dp"
+            app:cardBackgroundColor="#00FFFFFF"
+            app:cardElevation="0dp">
+
+        <Spinner
+                android:id="@+id/ins_prodi"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="8dp"
+                android:textSize="14sp"
+                android:entries="@array/semester"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ins_telpon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nomor Handphone"
+                android:textSize="14sp"
+                android:inputType="number"
+                android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ins_alamat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:hint="Alamat"
+                android:lines="3"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
