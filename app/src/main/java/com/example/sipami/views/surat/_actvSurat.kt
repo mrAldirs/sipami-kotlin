@@ -82,8 +82,6 @@ class _actvSurat : AppCompatActivity(), IntentHelper {
         val url = "http://192.168.137.1/api_sipami/notification_json.php"
 
         val postData = HashMap<String, String>()
-//        postData["title"] = "Pengajuan surat"
-//        postData["body"] = "Berhasil mengajukan surat!"
 
         val request = object : StringRequest(Method.POST, url, Response.Listener { response ->
         }, Response.ErrorListener { error ->

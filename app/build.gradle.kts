@@ -59,4 +59,6 @@ dependencies {
     implementation ("com.google.firebase:firebase-auth-ktx")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation ("com.google.firebase:firebase-messaging:23.3.0")
+    implementation("com.google.firebase:firebase-inappmessaging-display-ktx")
+    implementation("com.google.firebase:firebase-config-ktx")
 }

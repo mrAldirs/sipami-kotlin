@@ -22,6 +22,7 @@ import com.example.sipami.views.history._fragHistory
 import com.example.sipami.views.profil._fragProfil
 import com.example.sipami.views.surat._actvSurat
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.squareup.picasso.Picasso
 
 class _actvMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener, IntentHelper {
@@ -30,6 +31,7 @@ class _actvMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSele
     private lateinit var _b_content: ContentDashboardBinding
     private lateinit var vmProfil: Profil
     private lateinit var preferences: SharedPreferences
+    var userProdi = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +51,16 @@ class _actvMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSele
 
     private fun formAction() {
         _b_content.btnSurat.setOnClickListener {
-            intentActivity(form())
+            val firebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
+            firebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults) // Pastikan Anda memiliki file XML dengan nilai default
+
+            val allowedProdi = firebaseRemoteConfig.getString("prodi_access")
+
+            if (userProdi == allowedProdi) {
+                intentActivity(form())
+            } else {
+                Toast.message("Hanya prodi D3 Manajemen Informatika dapat akses!")
+            }
         }
     }
 
@@ -92,6 +103,7 @@ class _actvMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSele
          vmProfil.profil(preferences.getString("id", "")).observe(this@_actvMain, Observer {
             _b_header.tvNama.setText(it.nama)
             _b_header.tvNim.setText(it.nim)
+            userProdi = it.prodi
             if (it.prodi.equals("null")) {
                 _b_header.tvJurusan.visibility = View.GONE
             } else {
