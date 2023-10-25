@@ -26,12 +26,25 @@ class _actvRegis : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _b = CRegisBinding.inflate(layoutInflater)
         setContentView(_b.root)
+        supportActionBar?.setTitle("Registrasi Akun")
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         Toast.init(applicationContext)
         vmUser = ViewModelProvider(this).get(User::class.java)
         uri = Uri.EMPTY
 
         registrasi()
         setImage()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        return true
     }
 
     private fun setImage() {
@@ -130,10 +143,5 @@ class _actvRegis : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 }

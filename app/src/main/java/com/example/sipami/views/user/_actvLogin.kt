@@ -8,7 +8,6 @@ import com.example.sipami.databinding.CLoginBinding
 import com.example.sipami.utils.helper.IntentHelper
 import com.example.sipami.utils.helper.SharedPreferences
 import com.example.sipami.utils.helper.Toast
-import com.example.sipami.views.layout._actvMain
 import com.google.firebase.auth.FirebaseUser
 
 class _actvLogin : AppCompatActivity(), IntentHelper {
@@ -22,12 +21,9 @@ class _actvLogin : AppCompatActivity(), IntentHelper {
         super.onCreate(savedInstanceState)
         _b = CLoginBinding.inflate(layoutInflater)
         setContentView(_b.root)
+        supportActionBar?.hide()
         Toast.init(applicationContext)
         preferences = SharedPreferences(this)
-
-        _b.btnAkun.setOnClickListener {
-            startActivity(Intent(this@_actvLogin, _actvRegis::class.java))
-        }
 
         validasi()
         registrasi()
@@ -78,6 +74,7 @@ class _actvLogin : AppCompatActivity(), IntentHelper {
                     preferences.saveString("id", st1)
 
                     intentActivity(actionLogin())
+                    finishAffinity()
                 }
             }
     }

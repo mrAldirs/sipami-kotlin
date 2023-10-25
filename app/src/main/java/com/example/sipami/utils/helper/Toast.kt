@@ -12,9 +12,10 @@ object Toast {
     }
 
     var sukses1 = "Masuk ke Akun Email untuk Verifikasi Akun!"
-    var sukses2 = "Berhasil mengirim data"
+    var sukses2 = "Berhasil mengirim form pengajuan surat!"
     var eror1 = "Lengkapi data terlebih dahulu!"
     var eror2 = "Katasandi salah!"
+    var eror3 = "Pilih Layanan Terlebih Dahulu"
 
     fun message(message: String) {
         toastMessage(message, Toast.LENGTH_SHORT)

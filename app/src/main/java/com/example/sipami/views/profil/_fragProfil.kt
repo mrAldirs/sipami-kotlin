@@ -1,6 +1,5 @@
 package com.example.sipami.views.profil
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +9,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.sipami.api.viewmodel.Profil
 import com.example.sipami.databinding.FProfilBinding
+import com.example.sipami.utils.helper.IntentHelper
 import com.example.sipami.utils.helper.SharedPreferences
 import com.squareup.picasso.Picasso
 
-class _fragProfil : Fragment() {
+class _fragProfil : Fragment(), IntentHelper {
     private lateinit var _b : FProfilBinding
     lateinit var _v: View
     private lateinit var vmProfil: Profil
@@ -25,11 +25,17 @@ class _fragProfil : Fragment() {
         vmProfil = ViewModelProvider(this).get(Profil::class.java)
         preferences = SharedPreferences(_v.context)
 
-        _b.btnEdit.setOnClickListener {
-            startActivity(Intent(_v.context, _actvProfilEdt::class.java))
-        }
+        edit()
 
         return _v
+    }
+
+    private fun edit() {
+        _b.btnEdit.setOnClickListener {
+            requireActivity().intentActivity(
+                requireActivity().editProf()
+            )
+        }
     }
 
     override fun onStart() {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -9,6 +10,7 @@
 
 
     <application
+            android:usesCleartextTraffic="true"
             android:allowBackup="true"
             android:dataExtractionRules="@xml/data_extraction_rules"
             android:fullBackupContent="@xml/backup_rules"
@@ -18,6 +20,15 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.Sipami"
             tools:targetApi="31">
+
+        <service
+                android:name=".utils.custom.FirebaseCloudMessaging"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity
                 android:name=".views.user._actvLogin"
                 android:screenOrientation="portrait"
@@ -36,6 +47,8 @@
         <activity android:name=".views.user._actvRegis"
                   android:screenOrientation="portrait"/>
         <activity android:name=".views.profil._actvProfilEdt"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".views.surat._actvShow"
                   android:screenOrientation="portrait"/>
     </application>
 

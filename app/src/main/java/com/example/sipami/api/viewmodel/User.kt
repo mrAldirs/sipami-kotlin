@@ -10,10 +10,10 @@ import com.example.sipami.models.mUser
 
 class User : ViewModel() {
     private val createUserResult = MutableLiveData<Boolean>()
-    private val userRepository = __user___()
+    private val __user = __user___()
 
     fun createUserWithEmailAndPassword(email: String, password: String) {
-        userRepository.createUserWithEmailAndPassword(email, password) { isSuccess ->
+        __user.createUserWithEmailAndPassword(email, password) { isSuccess ->
             createUserResult.value = isSuccess
         }
     }

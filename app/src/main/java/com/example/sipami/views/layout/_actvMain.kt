@@ -4,8 +4,10 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.PopupMenu
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.sipami.R
@@ -13,6 +15,7 @@ import com.example.sipami.api.viewmodel.Profil
 import com.example.sipami.databinding.CDashboardBinding
 import com.example.sipami.databinding.ContentDashboardBinding
 import com.example.sipami.databinding.HeadDashboardBinding
+import com.example.sipami.utils.helper.IntentHelper
 import com.example.sipami.utils.helper.SharedPreferences
 import com.example.sipami.utils.helper.Toast
 import com.example.sipami.views.history._fragHistory
@@ -21,7 +24,7 @@ import com.example.sipami.views.surat._actvSurat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 
-class _actvMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class _actvMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener, IntentHelper {
     private lateinit var _b: CDashboardBinding
     private lateinit var _b_header: HeadDashboardBinding
     private lateinit var _b_content: ContentDashboardBinding
@@ -34,15 +37,50 @@ class _actvMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSele
         _b_content = _b.content
         _b_header = _b.header
         setContentView(_b.root)
+        supportActionBar?.setTitle("Dashboard")
         vmProfil = ViewModelProvider(this).get(Profil::class.java)
         preferences = SharedPreferences(this)
         Toast.init(applicationContext)
 
-        _b_content.btnSurat.setOnClickListener {
-            startActivity(Intent(this@_actvMain, _actvSurat::class.java))
-        }
+        formAction()
 
         _b.bottomNavigasi.setOnNavigationItemSelectedListener(this)
+    }
+
+    private fun formAction() {
+        _b_content.btnSurat.setOnClickListener {
+            intentActivity(form())
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu._mn_options, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.mn_option -> {
+                val popupMenu = PopupMenu(this, findViewById(R.id.mn_option))
+                popupMenu.menuInflater.inflate(R.menu._mn_logout, popupMenu.menu)
+
+                popupMenu.setOnMenuItemClickListener { popupItem ->
+                    when (popupItem.itemId) {
+                        R.id.mn_logout -> {
+                            preferences.remove("id")
+                            intentActivity(actionLogout())
+                            finishAffinity()
+                            return@setOnMenuItemClickListener true
+                        }
+                        else -> return@setOnMenuItemClickListener false
+                    }
+                }
+
+                popupMenu.show()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onStart() {
