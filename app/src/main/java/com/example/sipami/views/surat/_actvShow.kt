@@ -53,18 +53,20 @@ class _actvShow : AppCompatActivity() {
     }
 
     private fun show() {
+        var kategoriId = ""
         vmSurat.show(intent.getStringExtra("id").toString()).observe(this@_actvShow, Observer { data ->
             _b.dtSemester.text = data.semester
             _b.dtTgl.text = data.tanggal
             _b.dtStatus.text = data.status
+            _b.dtAlasan.text = data.alasan
             if (data.equals("On Process")) {
                 _b.icStatus.setBackgroundResource(R.drawable.ic_proses)
             }
-            var kategoriId = data.kategori_id
+            kategoriId = data.kategori_id
+        })
 
-            vmSurat.showKategori(kategoriId).observe(this@_actvShow, Observer { _data ->
-                _b.dtKeperluan.text = _data.nama
-            })
+        vmSurat.showKategori(kategoriId).observe(this@_actvShow, Observer { _data ->
+            _b.dtKeperluan.text = _data.nama
         })
     }
 }

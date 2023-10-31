@@ -1,6 +1,5 @@
 package com.example.sipami.views.layout
 
-import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,7 +19,6 @@ import com.example.sipami.utils.helper.SharedPreferences
 import com.example.sipami.utils.helper.Toast
 import com.example.sipami.views.history._fragHistory
 import com.example.sipami.views.profil._fragProfil
-import com.example.sipami.views.surat._actvSurat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.squareup.picasso.Picasso
@@ -31,6 +29,7 @@ class _actvMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSele
     private lateinit var _b_content: ContentDashboardBinding
     private lateinit var vmProfil: Profil
     private lateinit var preferences: SharedPreferences
+    private var remoteConfig: FirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
     var userProdi = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,16 +44,29 @@ class _actvMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSele
         Toast.init(applicationContext)
 
         formAction()
+        loginAction()
 
         _b.bottomNavigasi.setOnNavigationItemSelectedListener(this)
     }
 
+    private fun loginAction() {
+        remoteConfig.setDefaultsAsync(R.xml.remote_config_login)
+        val allowedLogin = remoteConfig.getString("login_access")
+
+        var userId = preferences.getString("id", "")
+        if (allowedLogin != userId) {
+            _b.cDashboard.setBackgroundColor(Color.parseColor("#DD9F9F"))
+            _b_header.cdHead.setCardBackgroundColor(Color.parseColor("#E49C97"))
+        } else {
+            null
+        }
+    }
+
     private fun formAction() {
         _b_content.btnSurat.setOnClickListener {
-            val firebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
-            firebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults) // Pastikan Anda memiliki file XML dengan nilai default
+            remoteConfig.setDefaultsAsync(R.xml.remote_config_prodi)
 
-            val allowedProdi = firebaseRemoteConfig.getString("prodi_access")
+            val allowedProdi = remoteConfig.getString("prodi_access")
 
             if (userProdi == allowedProdi) {
                 intentActivity(form())

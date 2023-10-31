@@ -31,8 +31,9 @@ class _actvSurat : AppCompatActivity(), IntentHelper {
     private lateinit var datePickerHelper: DatePickerHelper
     private val kategoriId = mutableListOf<String>()
     private var getKategori = ""
+    val uuid = UUID.randomUUID().toString()
 
-    val semester = arrayOf("Pilih Semester","1","2","3","4","5","6")
+    val semester = arrayOf("Pilih Semester","1","2","3","4","5","6","7","8")
     lateinit var adapter: ArrayAdapter<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -141,7 +142,7 @@ class _actvSurat : AppCompatActivity(), IntentHelper {
 
     private fun validasi() {
         val data = mSurat.__mSurat(
-            UUID.randomUUID().toString(),
+            uuid,
             getKategori,
             preferences.getString("id", ""),
             _b_content.insTanggal.text.toString(),

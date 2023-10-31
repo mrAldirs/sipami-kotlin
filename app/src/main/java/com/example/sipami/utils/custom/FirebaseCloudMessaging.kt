@@ -6,15 +6,17 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.example.sipami.R
+import com.example.sipami.views.surat._actvShow
+import com.example.sipami.views.surat._actvSurat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
 class FirebaseCloudMessaging : FirebaseMessagingService() {
+
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         Log.d("FCM Token", "Refreshed token: $token")
@@ -24,11 +26,6 @@ class FirebaseCloudMessaging : FirebaseMessagingService() {
         val title = "Pengajuan Surat"
         val body = "Berhasil mengajukan surat"
         val clickAction = remoteMessage.data["click_action"]
-
-//        val title = remoteMessage.data["title"]
-//        val body = remoteMessage.data["body"]
-//        val clickAction = remoteMessage.data["click_action"]
-
         createNotification(title, body, clickAction)
     }
 
@@ -52,16 +49,17 @@ class FirebaseCloudMessaging : FirebaseMessagingService() {
             .setSmallIcon(R.drawable.ic_notif)
             .setAutoCancel(true)
 
-        if (clickAction != null) {
-            val actionIntent = Intent(Intent.ACTION_VIEW, Uri.parse(clickAction))
-            val pendingIntentFlags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                PendingIntent.FLAG_IMMUTABLE
-            } else {
-                0
-            }
-            val pendingIntent = PendingIntent.getActivity(this, 0, actionIntent, pendingIntentFlags)
-            notificationBuilder.setContentIntent(pendingIntent)
+        val intent = Intent(this, _actvShow::class.java)
+        intent.putExtra("id", _actvSurat().uuid)
+
+        val pendingIntentFlags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            PendingIntent.FLAG_IMMUTABLE
+        } else {
+            0
         }
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, pendingIntentFlags)
+
+        notificationBuilder.setContentIntent(pendingIntent)
         notificationManager.notify(0, notificationBuilder.build())
     }
 }
