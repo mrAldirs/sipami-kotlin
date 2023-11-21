@@ -2,8 +2,10 @@ package com.example.sipami.utils.helper
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.core.app.ActivityOptionsCompat
 import com.example.sipami.R
+import com.example.sipami.utils.custom.URLCustom
 import com.example.sipami.views.layout._actvMain
 import com.example.sipami.views.profil._actvProfilEdt
 import com.example.sipami.views.surat._actvShow
@@ -36,6 +38,24 @@ interface IntentHelper {
 
     fun Context.form(): Intent {
         return Intent(this, _actvSurat::class.java)
+    }
+
+    fun Context.jadwal(): Intent {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(URLCustom.JDWL_URL)
+        return intent
+    }
+
+    fun Context.notelp(): Intent {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(URLCustom.NOTELP_URL)
+        return intent
+    }
+
+    fun Context.himaAction(): Intent {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(URLCustom.HIMA_URL)
+        return intent
     }
 
     fun Context.intentActivity(intent: Intent) {

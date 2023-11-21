@@ -1,12 +1,14 @@
 package com.example.sipami.views.layout
 
+import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.sipami.R
@@ -22,6 +24,7 @@ import com.example.sipami.views.profil._fragProfil
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.squareup.picasso.Picasso
+
 
 class _actvMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener, IntentHelper {
     private lateinit var _b: CDashboardBinding
@@ -45,8 +48,29 @@ class _actvMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSele
 
         formAction()
         loginAction()
+        kegiatan()
+        notelpon()
+        matkul()
 
         _b.bottomNavigasi.setOnNavigationItemSelectedListener(this)
+    }
+
+    private fun matkul() {
+        _b_content.btnJadwal.setOnClickListener {
+            intentActivity(jadwal())
+        }
+    }
+
+    private fun notelpon() {
+        _b_content.btnKontak.setOnClickListener {
+            intentActivity(notelp())
+        }
+    }
+
+    private fun kegiatan() {
+        _b_content.btnKegiatan.setOnClickListener {
+            intentActivity(himaAction())
+        }
     }
 
     private fun loginAction() {
