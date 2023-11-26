@@ -16,8 +16,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ins_img"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginBottom="8dp"
                 app:civ_border_width="1dp"
@@ -41,7 +41,7 @@
             android:text="Profil Mahasiswa"
             style="@style/TextAppearance.AppCompat.Title"
             android:background="#00FFFFFF"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:paddingHorizontal="16dp"
             android:layout_gravity="center_horizontal"/>
 
@@ -99,8 +99,37 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Katasandi"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:text="Role"/>
+
+    <RadioGroup
+            android:id="@+id/rg_role"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="horizontal">
+
+        <RadioButton
+                android:id="@+id/rb_mahasiswa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Admin"/>
+
+        <RadioButton
+                android:id="@+id/rb_admin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mahasiswa"
+                android:layout_marginStart="16dp"/>
+
+    </RadioGroup>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Katasandi"
+            android:layout_marginTop="10dp"
             style="@style/TextAppearance.AppCompat.Title"
             android:background="#00FFFFFF"
             android:paddingHorizontal="16dp"

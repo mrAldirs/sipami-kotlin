@@ -1,5 +1,6 @@
 package com.example.sipami.views.user
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sipami.api.global.Config
@@ -7,6 +8,8 @@ import com.example.sipami.databinding.CLoginBinding
 import com.example.sipami.utils.helper.IntentHelper
 import com.example.sipami.utils.helper.SharedPreferences
 import com.example.sipami.utils.helper.Toast
+import com.example.sipami.views.setelahLogin._actvAdmin
+import com.example.sipami.views.setelahLogin._actvMahasiswa
 import com.google.firebase.auth.FirebaseUser
 
 class _actvLogin : AppCompatActivity(), IntentHelper {
@@ -70,10 +73,23 @@ class _actvLogin : AppCompatActivity(), IntentHelper {
                 if (!documents.isEmpty) {
                     val document = documents.documents[0]
                     val st1 = document.get("id").toString()
-                    preferences.saveString("id", st1)
+                    val st2 = document.get("role").toString()
 
-                    intentActivity(actionLogin())
-                    finishAffinity()
+                    if (st2.equals("admin")) {
+                        preferences.saveString("id", st1)
+                        intentActivity(Intent(this, _actvAdmin::class.java))
+                        finishAffinity()
+                        Toast.message("Anda bukan admin")
+                    } else {
+                        preferences.saveString("id", st1)
+                        intentActivity(Intent(this, _actvMahasiswa::class.java))
+                        finishAffinity()
+                        Toast.message("Anda bukan admin")
+                    }
+//                    preferences.saveString("id", st1)
+
+//                    intentActivity(actionLogin())
+//                    finishAffinity()
                 }
             }
     }

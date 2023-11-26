@@ -21,6 +21,7 @@ class _actvRegis : AppCompatActivity() {
     private lateinit var vmUser: User
     lateinit var uri: Uri
     val RC_P = 100
+    var role = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,13 @@ class _actvRegis : AppCompatActivity() {
 
         registrasi()
         setImage()
+
+        _b.rgRole.setOnCheckedChangeListener { group, i ->
+            when(i) {
+                R.id.rb_mahasiswa -> role = "mahasiswa"
+                R.id.rb_admin -> role = "admin"
+            }
+        }
     }
 
     override fun onBackPressed() {
@@ -74,6 +82,7 @@ class _actvRegis : AppCompatActivity() {
         hm.set("id", randomId)
         hm.set("email", _b.insEmail.text.toString())
         hm.set("password", _b.insPassword.text.toString())
+        hm.set("role", role)
 
         FirebaseFirestore.getInstance().collection("user")
             .document(_b.insEmail.text.toString())
