@@ -36,8 +36,8 @@ class _actvRegis : AppCompatActivity() {
         registrasi()
         setImage()
 
-        _b.rgRole.setOnCheckedChangeListener { group, i ->
-            when(i) {
+        _b.rgRole.setOnCheckedChangeListener { group, checked ->
+            when(checked) {
                 R.id.rb_mahasiswa -> role = "mahasiswa"
                 R.id.rb_admin -> role = "admin"
             }

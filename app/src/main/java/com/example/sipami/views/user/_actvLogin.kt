@@ -79,7 +79,7 @@ class _actvLogin : AppCompatActivity(), IntentHelper {
                         preferences.saveString("id", st1)
                         intentActivity(Intent(this, _actvAdmin::class.java))
                         finishAffinity()
-                        Toast.message("Anda bukan admin")
+                        Toast.message("Anda admin")
                     } else {
                         preferences.saveString("id", st1)
                         intentActivity(Intent(this, _actvMahasiswa::class.java))
