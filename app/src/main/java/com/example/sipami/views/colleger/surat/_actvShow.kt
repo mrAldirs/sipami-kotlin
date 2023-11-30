@@ -1,6 +1,7 @@
-package com.example.sipami.views.surat
+package com.example.sipami.views.colleger.surat
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -8,10 +9,11 @@ import com.example.sipami.R
 import com.example.sipami.api.viewmodel.Profil
 import com.example.sipami.api.viewmodel.Surat
 import com.example.sipami.databinding.CSuratShowBinding
+import com.example.sipami.utils.helper.IntentHelper
 import com.example.sipami.utils.helper.SharedPreferences
 import com.squareup.picasso.Picasso
 
-class _actvShow : AppCompatActivity() {
+class _actvShow : AppCompatActivity(), IntentHelper {
     private lateinit var _b: CSuratShowBinding
     private lateinit var vmProfil: Profil
     private lateinit var vmSurat: Surat
@@ -29,6 +31,13 @@ class _actvShow : AppCompatActivity() {
 
         show()
         profil()
+        edit()
+    }
+
+    private fun edit() {
+        _b.btnEdit.setOnClickListener {
+            intentActivity(suratEdit(intent.getStringExtra("id").toString()))
+        }
     }
 
     override fun onBackPressed() {
@@ -61,6 +70,9 @@ class _actvShow : AppCompatActivity() {
             _b.dtAlasan.text = data.alasan
             if (data.equals("On Process")) {
                 _b.icStatus.setBackgroundResource(R.drawable.ic_proses)
+                _b.btnEdit.visibility = View.VISIBLE
+            } else {
+                _b.btnEdit.visibility = View.GONE
             }
             kategoriId = data.kategori_id
         })

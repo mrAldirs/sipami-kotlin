@@ -1,4 +1,4 @@
-package com.example.sipami.views.user
+package com.example.sipami.views.colleger.user
 
 import android.app.Activity
 import android.content.Intent

@@ -8,4 +8,6 @@
         <item>5</item>
         <item>6</item>
     </array>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:showIn="navigation_view">
+
+    <item
+            android:id="@+id/nav_homeAdmin"
+            android:title="Home"/>
+
+    <item
+            android:id="@+id/nav_user_admin"
+            android:title="Mahasiswa"/>
+
+    <item
+            android:title="Surat"
+            app:showAsAction="always">
+
+        <menu>
+            <item
+                    android:id="@+id/nav_surat_masuk"
+                    android:title="Surat Masuk"/>
+
+            <item
+                    android:id="@+id/nav_file_surat"
+                    android:title="File Surat"/>
+
+            <item
+                    android:id="@+id/nav_history"
+                    android:title="Riwayat"/>
+        </menu>
+
+    </item>
+
+    <item
+            android:title="Pengaturan"
+            app:showAsAction="always">
+        <menu>
+            <item
+                    android:id="@+id/nav_logout"
+                    android:title="Logout"/>
+        </menu>
+    </item>
+
+</menu>

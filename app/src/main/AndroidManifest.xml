@@ -30,7 +30,7 @@
         </service>
 
         <activity
-                android:name=".views.user._actvLogin"
+                android:name=".views.colleger.user._actvLogin"
                 android:screenOrientation="portrait"
                 android:exported="true">
             <intent-filter>
@@ -40,19 +40,21 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".views.surat._actvSurat"
+        <activity android:name=".views.colleger.surat._actvSurat"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".views.layout._actvMain"
+        <activity android:name=".views.colleger.layout._actvMain"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".views.user._actvRegis"
+        <activity android:name=".views.colleger.user._actvRegis"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".views.profil._actvProfilEdt"
+        <activity android:name=".views.colleger.profil._actvProfilEdt"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".views.surat._actvShow"
+        <activity android:name=".views.colleger.surat._actvShow"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".views.setelahLogin._actvAdmin"
+        <activity android:name=".views.admin.layout._actvMain"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".views.setelahLogin._actvMahasiswa"
+        <activity android:name=".views.admin.surat._actvSurat"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".views.colleger.surat._actvUpdate"
                   android:screenOrientation="portrait"/>
     </application>
 

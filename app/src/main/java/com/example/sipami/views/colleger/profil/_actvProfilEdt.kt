@@ -1,4 +1,4 @@
-package com.example.sipami.views.profil
+package com.example.sipami.views.colleger.profil
 
 import android.app.Activity
 import android.content.DialogInterface

@@ -31,4 +31,12 @@ class Surat : ViewModel() {
     fun showKategori(id: String): LiveData<mSurat.__mKategori> {
         return __surat.showKategori(id)
     }
+
+    fun loadAll(): LiveData<List<mSurat.__mHistory>> {
+        return __surat.loadAll()
+    }
+
+    fun editSurat(surat: mSurat.__mSurat): LiveData<Boolean> {
+        return __surat.editSurat(surat)
+    }
 }

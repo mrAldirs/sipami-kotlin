@@ -6,12 +6,13 @@ import android.net.Uri
 import androidx.core.app.ActivityOptionsCompat
 import com.example.sipami.R
 import com.example.sipami.utils.custom.URLCustom
-import com.example.sipami.views.layout._actvMain
-import com.example.sipami.views.profil._actvProfilEdt
-import com.example.sipami.views.surat._actvShow
-import com.example.sipami.views.surat._actvSurat
-import com.example.sipami.views.user._actvLogin
-import com.example.sipami.views.user._actvRegis
+import com.example.sipami.views.colleger.layout._actvMain
+import com.example.sipami.views.colleger.profil._actvProfilEdt
+import com.example.sipami.views.colleger.surat._actvShow
+import com.example.sipami.views.colleger.surat._actvSurat
+import com.example.sipami.views.colleger.surat._actvUpdate
+import com.example.sipami.views.colleger.user._actvLogin
+import com.example.sipami.views.colleger.user._actvRegis
 
 interface IntentHelper {
     fun Context.actionLogin(): Intent {
@@ -32,6 +33,12 @@ interface IntentHelper {
 
     fun Context.suratShow(data: String): Intent {
         val intent = Intent(this, _actvShow::class.java)
+        intent.putExtra("id", data)
+        return intent
+    }
+
+    fun Context.suratEdit(data: String): Intent {
+        val intent = Intent(this, _actvUpdate::class.java)
         intent.putExtra("id", data)
         return intent
     }

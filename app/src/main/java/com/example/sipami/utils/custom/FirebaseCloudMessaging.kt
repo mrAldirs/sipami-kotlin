@@ -10,8 +10,8 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.example.sipami.R
-import com.example.sipami.views.surat._actvShow
-import com.example.sipami.views.surat._actvSurat
+import com.example.sipami.views.colleger.surat._actvShow
+import com.example.sipami.views.colleger.surat._actvSurat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 

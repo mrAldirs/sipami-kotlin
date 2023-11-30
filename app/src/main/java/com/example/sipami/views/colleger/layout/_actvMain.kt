@@ -1,4 +1,4 @@
-package com.example.sipami.views.layout
+package com.example.sipami.views.colleger.layout
 
 import android.content.Intent
 import android.graphics.Color
@@ -19,8 +19,8 @@ import com.example.sipami.databinding.HeadDashboardBinding
 import com.example.sipami.utils.helper.IntentHelper
 import com.example.sipami.utils.helper.SharedPreferences
 import com.example.sipami.utils.helper.Toast
-import com.example.sipami.views.history._fragHistory
-import com.example.sipami.views.profil._fragProfil
+import com.example.sipami.views.colleger.history._fragHistory
+import com.example.sipami.views.colleger.profil._fragProfil
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.squareup.picasso.Picasso

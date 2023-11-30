@@ -1,4 +1,4 @@
-package com.example.sipami.views.history
+package com.example.sipami.views.colleger.history
 
 import android.content.DialogInterface
 import android.os.Bundle

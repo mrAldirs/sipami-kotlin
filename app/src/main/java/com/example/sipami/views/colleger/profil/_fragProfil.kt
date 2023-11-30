@@ -1,4 +1,4 @@
-package com.example.sipami.views.profil
+package com.example.sipami.views.colleger.profil
 
 import android.os.Bundle
 import android.view.LayoutInflater

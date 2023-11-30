@@ -56,11 +56,59 @@ class __surat___ {
         return result
     }
 
+    fun editSurat(surat: mSurat.__mSurat): LiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
+
+        val hm = HashMap<String,Any>()
+        hm.put("id", surat.id)
+        hm.set("kategori_id", surat.kategori_id)
+        hm.set("user_id", surat.user_id)
+        hm.set("tanggal", surat.tanggal)
+        hm.set("semester", surat.semester)
+        hm.set("alasan", surat.alasan)
+        hm.set("status", surat.status)
+        hm.set("file", "")
+
+        firestore.collection(Data.surat)
+            .document(surat.id)
+            .update(hm)
+            .addOnSuccessListener {
+                result.value = true
+            }
+            .addOnFailureListener {
+                result.value = false
+            }
+
+        return result
+    }
+
     fun loadData(user_id: String): LiveData<List<mSurat.__mHistory>> {
         val resultLiveData = MutableLiveData<List<mSurat.__mHistory>>()
 
         firestore.collection(Data.surat)
             .whereEqualTo("user_id", user_id)
+            .get()
+            .addOnSuccessListener { result ->
+                val dataList = mutableListOf<mSurat.__mHistory>()
+                for (doc in result) {
+                    val data = mSurat.__mHistory(
+                        doc.get("id").toString(),doc.get("tanggal").toString(),doc.get("status").toString()
+                    )
+                    dataList.add(data)
+                }
+                resultLiveData.value = dataList
+            }
+            .addOnFailureListener { exception ->
+
+            }
+        return resultLiveData
+    }
+
+    fun loadAll(): LiveData<List<mSurat.__mHistory>> {
+        val resultLiveData = MutableLiveData<List<mSurat.__mHistory>>()
+
+        firestore.collection(Data.surat)
+            .orderBy("tanggal", com.google.firebase.firestore.Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener { result ->
                 val dataList = mutableListOf<mSurat.__mHistory>()

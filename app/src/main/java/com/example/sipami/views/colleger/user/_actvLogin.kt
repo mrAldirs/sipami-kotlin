@@ -1,4 +1,4 @@
-package com.example.sipami.views.user
+package com.example.sipami.views.colleger.user
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,7 @@ import com.example.sipami.databinding.CLoginBinding
 import com.example.sipami.utils.helper.IntentHelper
 import com.example.sipami.utils.helper.SharedPreferences
 import com.example.sipami.utils.helper.Toast
-import com.example.sipami.views.setelahLogin._actvAdmin
-import com.example.sipami.views.setelahLogin._actvMahasiswa
+import com.example.sipami.views.admin.layout._actvMain
 import com.google.firebase.auth.FirebaseUser
 
 class _actvLogin : AppCompatActivity(), IntentHelper {
@@ -77,12 +76,12 @@ class _actvLogin : AppCompatActivity(), IntentHelper {
 
                     if (st2.equals("admin")) {
                         preferences.saveString("id", st1)
-                        intentActivity(Intent(this, _actvAdmin::class.java))
+                        intentActivity(Intent(this, com.example.sipami.views.colleger.layout._actvMain::class.java))
                         finishAffinity()
                         Toast.message("Anda admin")
                     } else {
                         preferences.saveString("id", st1)
-                        intentActivity(Intent(this, _actvMahasiswa::class.java))
+                        intentActivity(Intent(this, _actvMain::class.java))
                         finishAffinity()
                         Toast.message("Anda bukan admin")
                     }

@@ -1,20 +1,18 @@
 package com.example.sipami.adapter
 
-import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sipami.R
 import com.example.sipami.models.mSurat
-import com.example.sipami.views.colleger.history._fragHistory
+import com.example.sipami.views.admin.surat._actvSurat
 
-class AdpHistory(private var dataList: List<mSurat.__mHistory>, val remote: _fragHistory) :
-    RecyclerView.Adapter<AdpHistory.HolderDataRiwayat>(){
+class AdpHistoryAdm(private var dataList: List<mSurat.__mHistory>, val remote: _actvSurat) :
+    RecyclerView.Adapter<AdpHistoryAdm.HolderDataRiwayat>(){
     class HolderDataRiwayat (v : View) : RecyclerView.ViewHolder(v) {
         val title = v.findViewById<TextView>(R.id.tv_title)
         val sub = v.findViewById<TextView>(R.id.tv_subtitle)
@@ -46,14 +44,14 @@ class AdpHistory(private var dataList: List<mSurat.__mHistory>, val remote: _fra
             holder.sts.setBackgroundColor(Color.parseColor("#03A9F4"))
         }
 
-        holder.cd.setOnLongClickListener {
-            remote.delete(data.id)
-            true
-        }
-
-        holder.cd.setOnClickListener {
-            remote.show(data.id)
-        }
+//        holder.cd.setOnLongClickListener {
+//            remote.delete(data.id)
+//            true
+//        }
+//
+//        holder.cd.setOnClickListener {
+//            remote.show(data.id)
+//        }
     }
 
     fun setData(newDataList: List<mSurat.__mHistory>) {
