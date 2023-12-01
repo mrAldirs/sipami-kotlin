@@ -76,14 +76,12 @@ class _actvLogin : AppCompatActivity(), IntentHelper {
 
                     if (st2.equals("admin")) {
                         preferences.saveString("id", st1)
-                        intentActivity(Intent(this, com.example.sipami.views.colleger.layout._actvMain::class.java))
-                        finishAffinity()
-                        Toast.message("Anda admin")
-                    } else {
-                        preferences.saveString("id", st1)
                         intentActivity(Intent(this, _actvMain::class.java))
                         finishAffinity()
-                        Toast.message("Anda bukan admin")
+                    } else {
+                        preferences.saveString("id", st1)
+                        intentActivity(Intent(this, com.example.sipami.views.colleger.layout._actvMain::class.java))
+                        finishAffinity()
                     }
 //                    preferences.saveString("id", st1)
 

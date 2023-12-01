@@ -78,7 +78,7 @@ class _actvMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSele
         val allowedLogin = remoteConfig.getString("login_access")
 
         var userId = preferences.getString("id", "")
-        if (allowedLogin != userId) {
+        if (allowedLogin == userId) {
             _b.cDashboard.setBackgroundColor(Color.parseColor("#DD9F9F"))
             _b_header.cdHead.setCardBackgroundColor(Color.parseColor("#E49C97"))
         } else {
