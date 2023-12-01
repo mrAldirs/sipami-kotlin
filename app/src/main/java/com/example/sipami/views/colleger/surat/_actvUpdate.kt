@@ -16,11 +16,12 @@ import com.example.sipami.databinding.CSuratBinding
 import com.example.sipami.databinding.FormSuratBinding
 import com.example.sipami.models.mSurat
 import com.example.sipami.utils.helper.DatePickerHelper
+import com.example.sipami.utils.helper.IntentHelper
 import com.example.sipami.utils.helper.SharedPreferences
 import com.example.sipami.utils.helper.Toast
 import java.util.*
 
-class _actvUpdate : AppCompatActivity() {
+class _actvUpdate : AppCompatActivity(), IntentHelper {
     private lateinit var _b: CSuratBinding
     private lateinit var _b_content: FormSuratBinding
     private lateinit var vmProfil: Profil
@@ -146,7 +147,7 @@ class _actvUpdate : AppCompatActivity() {
 
     private fun validasi() {
         val data = mSurat.__mSurat(
-            uuid,
+            intent.getStringExtra("id").toString(),
             getKategori,
             preferences.getString("id", ""),
             _b_content.insTanggal.text.toString(),
@@ -157,7 +158,7 @@ class _actvUpdate : AppCompatActivity() {
         vmSurat.editSurat(data).observe(this, androidx.lifecycle.Observer { success ->
             if (success == true) {
                 notifikasiMessage()
-                onBackPressed()
+                intentActivity(suratShow(intent.getStringExtra("id").toString()))
                 Toast.message(Toast.sukses2)
             } else {
                 Toast.message(Toast.eror1)

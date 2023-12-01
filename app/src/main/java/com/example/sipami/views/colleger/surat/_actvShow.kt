@@ -62,7 +62,6 @@ class _actvShow : AppCompatActivity(), IntentHelper {
     }
 
     private fun show() {
-        var kategoriId = ""
         vmSurat.show(intent.getStringExtra("id").toString()).observe(this@_actvShow, Observer { data ->
             _b.dtSemester.text = data.semester
             _b.dtTgl.text = data.tanggal
@@ -74,9 +73,10 @@ class _actvShow : AppCompatActivity(), IntentHelper {
             } else {
                 _b.btnEdit.visibility = View.GONE
             }
-//            kategoriId = data.kategori_id
-            vmSurat.showKategori(data.kategori_id).observe(this@_actvShow, Observer { _data ->
-                _b.dtKeperluan.text = _data.nama
+
+            val id_kat = data.kategori_id
+            vmSurat.showKategori(id_kat).observe(this@_actvShow, Observer { peak ->
+                _b.dtKeperluan.text = peak.nama
             })
         })
     }
