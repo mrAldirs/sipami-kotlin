@@ -68,17 +68,16 @@ class _actvShow : AppCompatActivity(), IntentHelper {
             _b.dtTgl.text = data.tanggal
             _b.dtStatus.text = data.status
             _b.dtAlasan.text = data.alasan
-            if (data.equals("On Process")) {
+            if (data.status.equals("On Process")) {
                 _b.icStatus.setBackgroundResource(R.drawable.ic_proses)
                 _b.btnEdit.visibility = View.VISIBLE
             } else {
                 _b.btnEdit.visibility = View.GONE
             }
-            kategoriId = data.kategori_id
-        })
-
-        vmSurat.showKategori(kategoriId).observe(this@_actvShow, Observer { _data ->
-            _b.dtKeperluan.text = _data.nama
+//            kategoriId = data.kategori_id
+            vmSurat.showKategori(data.kategori_id).observe(this@_actvShow, Observer { _data ->
+                _b.dtKeperluan.text = _data.nama
+            })
         })
     }
 }

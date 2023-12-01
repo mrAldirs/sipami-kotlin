@@ -35,7 +35,7 @@ open class _fragHistory : Fragment(), IntentHelper {
     }
 
     fun show(id: String) {
-        requireActivity().intentActivity(activity?.suratShow(id)!!)
+        activity?.suratShow(id)?.let { requireActivity().intentActivity(it) }
     }
 
     private fun listItem() {
