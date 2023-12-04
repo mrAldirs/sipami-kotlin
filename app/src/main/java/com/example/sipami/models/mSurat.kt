@@ -1,11 +1,6 @@
 package com.example.sipami.models
 
 class mSurat {
-    data class __mKategori (
-        val id: String,
-        val nama: String
-    )
-
     data class __mSurat (
         val id: String,
         val kategori_id: String,

@@ -37,6 +37,17 @@ interface IntentHelper {
         return intent
     }
 
+    fun Context.suratMainAdmin(): Intent {
+        val intent = Intent(this, com.example.sipami.views.admin.surat._actvSurat::class.java)
+        return intent
+    }
+
+    fun Context.suratShowAdmin(data: String): Intent {
+        val intent = Intent(this, com.example.sipami.views.admin.surat._actvShow::class.java)
+        intent.putExtra("id", data)
+        return intent
+    }
+
     fun Context.suratEdit(data: String): Intent {
         val intent = Intent(this, _actvUpdate::class.java)
         intent.putExtra("id", data)

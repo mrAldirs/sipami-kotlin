@@ -44,14 +44,14 @@ class AdpHistoryAdm(private var dataList: List<mSurat.__mHistory>, val remote: _
             holder.sts.setBackgroundColor(Color.parseColor("#03A9F4"))
         }
 
-//        holder.cd.setOnLongClickListener {
-//            remote.delete(data.id)
-//            true
-//        }
-//
-//        holder.cd.setOnClickListener {
-//            remote.show(data.id)
-//        }
+        holder.cd.setOnLongClickListener {
+            remote.delete(data.id)
+            true
+        }
+
+        holder.cd.setOnClickListener {
+            remote.show(data.id)
+        }
     }
 
     fun setData(newDataList: List<mSurat.__mHistory>) {

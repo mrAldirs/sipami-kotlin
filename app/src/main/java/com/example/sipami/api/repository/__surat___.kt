@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.sipami.api.global.Config
 import com.example.sipami.api.global.Data
+import com.example.sipami.models.mKategori
 import com.example.sipami.models.mSurat
 import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
@@ -14,14 +15,14 @@ import kotlin.collections.HashMap
 class __surat___ {
     private val firestore = Config.firestore
 
-    fun getKategoriList(callback: (List<mSurat.__mKategori>?, Exception?) -> Unit) {
+    fun getKategoriList(callback: (List<mKategori>?, Exception?) -> Unit) {
         firestore.collection(Data.kategori).get()
             .addOnSuccessListener { querySnapshot ->
-                val kategoriList = mutableListOf<mSurat.__mKategori>()
+                val kategoriList = mutableListOf<mKategori>()
                 for (document in querySnapshot.documents) {
                     val id = document.id
                     val nama = document.getString("nama") ?: ""
-                    kategoriList.add(mSurat.__mKategori(id, nama))
+                    kategoriList.add(mKategori(id, nama))
                 }
                 callback(kategoriList, null)
             }
@@ -152,7 +153,8 @@ class __surat___ {
                 if (doc != null && doc.exists()) {
                     val data = mSurat.__mSurat(
                         doc.get("id").toString(),
-                        doc.get("kategori_id").toString(), "",
+                        doc.get("kategori_id").toString(),
+                        doc.get("user_id").toString(),
                         doc.get("tanggal").toString(),
                         doc.get("semester").toString(),
                         doc.get("alasan").toString(),
@@ -169,23 +171,24 @@ class __surat___ {
         return resultLiveData
     }
 
-    fun showKategori(id: String): LiveData<mSurat.__mKategori> {
-        val resultLiveData = MutableLiveData<mSurat.__mKategori>()
+    fun showKategori(id: String): LiveData<mKategori> {
+        val resultLiveData = MutableLiveData<mKategori>()
 
         firestore.collection(Data.surat)
-            .document(id)
+            .whereEqualTo("id", id)
             .get()
-            .addOnSuccessListener { doc ->
-                if (doc != null && doc.exists()) {
-                    val data = mSurat.__mKategori(
-                        doc.get("id").toString(),
-                        doc.get("nama").toString()
+            .addOnSuccessListener { documents ->
+                for (doc in documents) {
+                    val data = mKategori(
+                        doc.getString("id").toString(),
+                        doc.getString("nama").toString()
                     )
                     resultLiveData.value = data
+                    break
                 }
             }
             .addOnFailureListener { exception ->
-
+                // Handle failure if needed
             }
 
         return resultLiveData

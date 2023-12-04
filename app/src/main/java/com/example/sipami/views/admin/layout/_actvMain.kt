@@ -7,8 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.example.sipami.R
 import com.example.sipami.databinding.AdmCDashboardBinding
+import com.example.sipami.utils.helper.IntentHelper
 
-class _actvMain : AppCompatActivity() {
+class _actvMain : AppCompatActivity(), IntentHelper {
 
     private lateinit var _b: AdmCDashboardBinding
     lateinit var toggle: ActionBarDrawerToggle
@@ -29,7 +30,7 @@ class _actvMain : AppCompatActivity() {
                     _b.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.nav_surat_masuk -> {
-
+                    intentActivity(suratMainAdmin())
                 }
             }
             true

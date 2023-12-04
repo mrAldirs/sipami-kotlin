@@ -13,6 +13,10 @@ class Profil: ViewModel() {
         return __profil.getProfil(id)
     }
 
+    fun profilById(id: String): LiveData<mProfil> {
+        return __profil.getProfilById(id)
+    }
+
     fun edit(profil: mProfil, uri: Uri?) : LiveData<Boolean> {
         return __profil.edit(profil, uri)
     }

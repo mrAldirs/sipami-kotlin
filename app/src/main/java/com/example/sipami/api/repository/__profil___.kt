@@ -43,6 +43,35 @@ class __profil___ {
         return resultLiveData
     }
 
+    fun getProfilById(user_id: String): LiveData<mProfil> {
+        val resultLiveData = MutableLiveData<mProfil>()
+
+        fr.collection(profil)
+            .whereEqualTo("user_id", user_id)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (doc in documents) {
+                    val data = mProfil(
+                        doc.getString("id").toString(),
+                        doc.getString("user_id").toString(),
+                        doc.getString("nama").toString(),
+                        doc.getString("prodi").toString(),
+                        doc.getString("nim").toString(),
+                        doc.getString("telpon").toString(),
+                        doc.getString("alamat").toString(),
+                        doc.getString("foto").toString()
+                    )
+                    resultLiveData.value = data
+                    break
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Handle failure if needed
+            }
+
+        return resultLiveData
+    }
+
     fun edit(profil: mProfil, uri: Uri?): LiveData<Boolean> {
         val resultLiveData = MutableLiveData<Boolean>()
 

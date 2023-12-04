@@ -3,12 +3,13 @@ package com.example.sipami.api.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.sipami.api.repository.__surat___
+import com.example.sipami.models.mKategori
 import com.example.sipami.models.mSurat
 
 class Surat : ViewModel() {
     private val __surat = __surat___()
 
-    fun getKategori(callback: (List<mSurat.__mKategori>?, Exception?) -> Unit) {
+    fun getKategori(callback: (List<mKategori>?, Exception?) -> Unit) {
         __surat.getKategoriList(callback)
     }
 
@@ -28,7 +29,7 @@ class Surat : ViewModel() {
         return __surat.show(id)
     }
 
-    fun showKategori(id: String): LiveData<mSurat.__mKategori> {
+    fun showKategori(id: String): LiveData<mKategori> {
         return __surat.showKategori(id)
     }
 

@@ -50,11 +50,15 @@
                   android:screenOrientation="portrait"/>
         <activity android:name=".views.colleger.surat._actvShow"
                   android:screenOrientation="portrait"/>
+        <activity android:name=".views.colleger.surat._actvUpdate"
+                  android:screenOrientation="portrait"/>
+
+
         <activity android:name=".views.admin.layout._actvMain"
                   android:screenOrientation="portrait"/>
         <activity android:name=".views.admin.surat._actvSurat"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".views.colleger.surat._actvUpdate"
+        <activity android:name=".views.admin.surat._actvShow"
                   android:screenOrientation="portrait"/>
     </application>
 
