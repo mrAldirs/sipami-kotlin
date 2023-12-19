@@ -2,6 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+            android:id="@+id/mn_maps"
+            android:title="Settings"
+            android:icon="@drawable/ic_loc"
+            android:orderInCategory="100"
+            app:showAsAction="always" />
+
+    <item
             android:id="@+id/mn_option"
             android:title="Settings"
             android:icon="@drawable/ic_setting"

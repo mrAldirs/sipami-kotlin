@@ -8,6 +8,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.example.sipami.R
 import com.example.sipami.views.colleger.surat._actvShow
@@ -19,7 +20,8 @@ class FirebaseCloudMessaging : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        Log.d("FCM Token", "Refreshed token: $token")
+        Log.d("FCM Token", "FCM Token: $token")
+        Toast.makeText(this, token, Toast.LENGTH_SHORT).show()
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {

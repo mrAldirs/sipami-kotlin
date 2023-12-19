@@ -126,6 +126,10 @@ class _actvMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSele
                 popupMenu.show()
                 return true
             }
+            R.id.mn_maps -> {
+                intentActivity(maps())
+                return true
+            }
             else -> return super.onOptionsItemSelected(item)
         }
     }

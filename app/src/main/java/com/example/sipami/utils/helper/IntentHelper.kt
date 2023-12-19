@@ -6,7 +6,10 @@ import android.net.Uri
 import androidx.core.app.ActivityOptionsCompat
 import com.example.sipami.R
 import com.example.sipami.utils.custom.URLCustom
+import com.example.sipami.views.admin.surat._actvHistory
+import com.example.sipami.views.colleger.activity._actvWebView
 import com.example.sipami.views.colleger.layout._actvMain
+import com.example.sipami.views.colleger.layout._actvMaps
 import com.example.sipami.views.colleger.profil._actvProfilEdt
 import com.example.sipami.views.colleger.surat._actvShow
 import com.example.sipami.views.colleger.surat._actvSurat
@@ -37,8 +40,18 @@ interface IntentHelper {
         return intent
     }
 
+    fun Context.suratHistoryAdmin(): Intent {
+        val intent = Intent(this, _actvHistory::class.java)
+        return intent
+    }
+
     fun Context.suratMainAdmin(): Intent {
         val intent = Intent(this, com.example.sipami.views.admin.surat._actvSurat::class.java)
+        return intent
+    }
+
+    fun Context.suratFileAdmin(): Intent {
+        val intent = Intent(this, com.example.sipami.views.admin.file._actvFile::class.java)
         return intent
     }
 
@@ -58,6 +71,10 @@ interface IntentHelper {
         return Intent(this, _actvSurat::class.java)
     }
 
+    fun Context.maps(): Intent {
+        return Intent(this, _actvMaps::class.java)
+    }
+
     fun Context.jadwal(): Intent {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse(URLCustom.JDWL_URL)
@@ -71,9 +88,7 @@ interface IntentHelper {
     }
 
     fun Context.himaAction(): Intent {
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse(URLCustom.HIMA_URL)
-        return intent
+        return Intent(this, _actvWebView::class.java)
     }
 
     fun Context.intentActivity(intent: Intent) {

@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.sipami"
-    compileSdk = 33
+    compileSdk = 34
 
     buildFeatures {
         viewBinding = true
@@ -15,7 +15,7 @@ android {
     defaultConfig {
         applicationId = "com.example.sipami"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -39,9 +39,9 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
+    implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.android.volley:volley:1.2.1")
     testImplementation("junit:junit:4.13.2")
@@ -51,14 +51,17 @@ dependencies {
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("com.getbase:floatingactionbutton:1.10.1")
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
-    implementation ("com.google.firebase:firebase-firestore-ktx:24.9.0")
+    implementation ("com.google.firebase:firebase-firestore-ktx:24.10.0")
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
     implementation ("com.google.firebase:firebase-storage:20.3.0")
     implementation ("com.google.firebase:firebase-auth-ktx")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation ("com.google.firebase:firebase-messaging:23.3.0")
     implementation("com.google.firebase:firebase-inappmessaging-display-ktx")
     implementation("com.google.firebase:firebase-config-ktx")
+    implementation ("com.github.mumayank:AirLocation:1.3")
+    implementation ("com.google.android.gms:play-services-maps:18.2.0")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
 }

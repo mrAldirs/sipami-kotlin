@@ -9,11 +9,10 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sipami.R
 import com.example.sipami.models.mSurat
-import com.example.sipami.views.admin.surat._actvHistory
 import com.example.sipami.views.admin.surat._actvSurat
 
-class AdpHistoryAdm(private var dataList: List<mSurat.__mHistory>, val remote: _actvHistory) :
-    RecyclerView.Adapter<AdpHistoryAdm.HolderDataRiwayat>(){
+class AdpSuratAdm(private var dataList: List<mSurat.__mHistory>, val remote: _actvSurat) :
+    RecyclerView.Adapter<AdpSuratAdm.HolderDataRiwayat>(){
     class HolderDataRiwayat (v : View) : RecyclerView.ViewHolder(v) {
         val title = v.findViewById<TextView>(R.id.tv_title)
         val sub = v.findViewById<TextView>(R.id.tv_subtitle)
@@ -43,6 +42,11 @@ class AdpHistoryAdm(private var dataList: List<mSurat.__mHistory>, val remote: _
             holder.title.text = "Jadwal Terbaru"
             holder.sub.text = "Jadwal terbaru sudah dirilis"
             holder.sts.setBackgroundColor(Color.parseColor("#03A9F4"))
+        }
+
+        holder.cd.setOnLongClickListener {
+            remote.delete(data.id)
+            true
         }
 
         holder.cd.setOnClickListener {

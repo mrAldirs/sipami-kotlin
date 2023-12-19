@@ -15,6 +15,91 @@ import kotlin.collections.HashMap
 class __surat___ {
     private val firestore = Config.firestore
 
+    fun getChart() : LiveData<List<mSurat.__mChartModel>> {
+        val resultLiveData = MutableLiveData<List<mSurat.__mChartModel>>()
+
+        firestore.collection(Data.mahasiswa)
+            .get()
+            .addOnSuccessListener { docs ->
+                val dataList = mutableListOf<mSurat.__mChartModel>()
+                for (doc in docs) {
+                    val id = doc.get("user_id").toString()
+                    val name = doc.get("nama").toString()
+
+                    firestore.collection(Data.surat)
+                        .whereEqualTo("user_id", id)
+                        .get()
+                        .addOnSuccessListener { sizeResult ->
+                            val total = sizeResult.size()
+
+                            val data = mSurat.__mChartModel(name, total.toLong())
+                            dataList.add(data)
+
+                            val sortedDataList = dataList.sortedByDescending { it.count }.take(5)
+                            resultLiveData.value = sortedDataList
+                        }
+                }
+            }
+
+        return resultLiveData
+    }
+
+    fun loadKategori() : LiveData<List<mKategori>> {
+        val resultLiveData = MutableLiveData<List<mKategori>>()
+
+        firestore.collection(Data.kategori)
+            .get()
+            .addOnSuccessListener { docs ->
+                val dataList = mutableListOf<mKategori>()
+                for (doc in docs) {
+                    val data = mKategori(
+                        doc.getString("id").toString(),
+                        doc.getString("nama").toString()
+                    )
+                    dataList.add(data)
+                }
+                resultLiveData.value = dataList
+            }
+
+        return resultLiveData
+    }
+
+    fun deleteKategori(id: String): LiveData<Boolean> {
+        val resultLiveData = MutableLiveData<Boolean>()
+
+        firestore.collection(Data.kategori)
+            .document(id)
+            .delete()
+            .addOnSuccessListener {
+                resultLiveData.value = true
+            }
+            .addOnFailureListener {
+                resultLiveData.value = false
+            }
+
+        return resultLiveData
+    }
+
+    fun insertKategori(kategori: mKategori) : LiveData<Boolean> {
+        val resultLiveData = MutableLiveData<Boolean>()
+
+        val hm = HashMap<String,Any>()
+        hm.put("id", kategori.id)
+        hm.set("nama", kategori.nama)
+
+        firestore.collection(Data.kategori)
+            .document()
+            .set(hm)
+            .addOnSuccessListener {
+                resultLiveData.value = true
+            }
+            .addOnFailureListener {
+                resultLiveData.value = false
+            }
+
+        return resultLiveData
+    }
+
     fun getKategoriList(callback: (List<mKategori>?, Exception?) -> Unit) {
         firestore.collection(Data.kategori).get()
             .addOnSuccessListener { querySnapshot ->
@@ -105,25 +190,69 @@ class __surat___ {
         return resultLiveData
     }
 
-    fun loadAll(): LiveData<List<mSurat.__mHistory>> {
+    fun loadAll(status: String): LiveData<List<mSurat.__mHistory>> {
         val resultLiveData = MutableLiveData<List<mSurat.__mHistory>>()
 
         firestore.collection(Data.surat)
-            .orderBy("tanggal", com.google.firebase.firestore.Query.Direction.DESCENDING)
+            .whereEqualTo("status", status)
             .get()
             .addOnSuccessListener { result ->
                 val dataList = mutableListOf<mSurat.__mHistory>()
                 for (doc in result) {
                     val data = mSurat.__mHistory(
-                        doc.get("id").toString(),doc.get("tanggal").toString(),doc.get("status").toString()
+                        doc.getString("id") ?: "",
+                        doc.getString("tanggal") ?: "",
+                        doc.getString("status") ?: ""
                     )
                     dataList.add(data)
                 }
                 resultLiveData.value = dataList
             }
             .addOnFailureListener { exception ->
-
+                // Handle failure
             }
+
+        return resultLiveData
+    }
+
+    fun loadFile(filter: String?): LiveData<List<mSurat.__mFile>> {
+        val resultLiveData = MutableLiveData<List<mSurat.__mFile>>()
+
+        val query = if (filter != null) {
+            firestore.collection(Data.kategori)
+                .whereEqualTo("nama", filter)
+        } else {
+            firestore.collection(Data.kategori)
+        }
+
+        query.get()
+            .addOnSuccessListener { result ->
+                val dataList = mutableListOf<mSurat.__mFile>()
+                for (doc in result) {
+                    val id = doc.get("id").toString()
+                    val nama = doc.get("nama").toString()
+
+                    firestore.collection(Data.surat)
+                        .whereEqualTo("kategori_id", id)
+                        .get()
+                        .addOnSuccessListener {
+                            for (doc in it) {
+                                val data = mSurat.__mFile(
+                                    doc.get("id").toString(),
+                                    nama,
+                                    doc.get("nomor_surat").toString(),
+                                    doc.get("file").toString()
+                                )
+                                dataList.add(data)
+                            }
+                            resultLiveData.value = dataList
+                        }
+                }
+                resultLiveData.value = dataList
+            }
+            .addOnFailureListener { exception ->
+            }
+
         return resultLiveData
     }
 
@@ -143,25 +272,42 @@ class __surat___ {
         return resultLiveData
     }
 
-    fun show(id: String): LiveData<mSurat.__mSurat> {
-        val resultLiveData = MutableLiveData<mSurat.__mSurat>()
+    fun show(id: String): LiveData<mSurat.__mSuratAll> {
+        val resultLiveData = MutableLiveData<mSurat.__mSuratAll>()
 
         firestore.collection(Data.surat)
-            .document(id)
+            .whereEqualTo("id", id)
             .get()
-            .addOnSuccessListener { doc ->
-                if (doc != null && doc.exists()) {
-                    val data = mSurat.__mSurat(
-                        doc.get("id").toString(),
-                        doc.get("kategori_id").toString(),
-                        doc.get("user_id").toString(),
-                        doc.get("tanggal").toString(),
-                        doc.get("semester").toString(),
-                        doc.get("alasan").toString(),
-                        doc.get("status").toString(),
-                        doc.get("file").toString()
-                    )
-                    resultLiveData.value = data
+            .addOnSuccessListener { docs ->
+                for (doc in docs)  {
+                    val id = doc.get("id").toString()
+                    val kategori_id = doc.get("kategori_id").toString()
+                    val user_id = doc.get("user_id").toString()
+                    val tanggal = doc.get("tanggal").toString()
+                    val semester = doc.get("semester").toString()
+                    val alasan = doc.get("alasan").toString()
+                    val status = doc.get("status").toString()
+                    val file = doc.get("file").toString()
+
+                    firestore.collection(Data.kategori)
+                        .whereEqualTo("id", kategori_id)
+                        .get()
+                        .addOnSuccessListener {
+                            for (doc in it) {
+                                val data = mSurat.__mSuratAll(
+                                    id,
+                                    kategori_id,
+                                    doc.get("nama").toString(),
+                                    user_id,
+                                    tanggal,
+                                    semester,
+                                    alasan,
+                                    status,
+                                    file
+                                )
+                                resultLiveData.value = data
+                            }
+                        }
                 }
             }
             .addOnFailureListener { exception ->
@@ -190,6 +336,50 @@ class __surat___ {
             .addOnFailureListener { exception ->
                 // Handle failure if needed
             }
+
+        return resultLiveData
+    }
+
+    fun uploadFile(id: String, nos: String, uri: Uri): LiveData<Boolean> {
+        val resultLiveData = MutableLiveData<Boolean>()
+
+        val hm = HashMap<String, Any>()
+        hm.set("id", id)
+        hm.set("nomor_surat", nos)
+        hm.set("status", "On Finished")
+
+        if (uri != Uri.EMPTY) {
+            val fileName = "PDF" + SimpleDateFormat("yyyyMMddHHmmssSSS").format(Date())
+            val fileRef = FirebaseStorage.getInstance().reference.child(fileName + ".pdf")
+            val uploadTask = uri?.let { fileRef.putFile(it) }
+
+            uploadTask!!.continueWithTask { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let {
+                        throw it
+                    }
+                }
+                fileRef.downloadUrl
+            }.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    hm.put("file", task.result.toString())
+
+                    firestore.collection(Data.surat)
+                        .document(id)
+                        .update(hm)
+                        .addOnSuccessListener { resultLiveData.value = true }
+                        .addOnFailureListener { resultLiveData.value = false }
+                } else {
+                    resultLiveData.value = false
+                }
+            }
+        } else {
+            firestore.collection(Data.surat)
+                .document()
+                .set(hm)
+                .addOnSuccessListener { resultLiveData.value = true }
+                .addOnFailureListener { resultLiveData.value = false }
+        }
 
         return resultLiveData
     }

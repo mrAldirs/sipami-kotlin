@@ -1,10 +1,12 @@
 package com.example.sipami.views.admin.surat
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.sipami.R
@@ -76,17 +78,23 @@ class _actvShow : AppCompatActivity(), IntentHelper {
 
             if (data.status.equals("On Process")) {
                 _b.icStatus.setBackgroundResource(R.drawable.ic_proses)
+                _b.icDownload.setBackgroundResource(R.drawable.ic_box)
+                _b.txtDownload.text = "File Belum Tersedia"
                 _b.btnAccept.visibility = View.VISIBLE
             } else {
+                _b.icStatus.setBackgroundResource(R.drawable.ic_done)
+                _b.icDownload.setBackgroundResource(R.drawable.ic_pdf)
+                _b.txtDownload.text = "Lihat File PDF"
                 _b.btnAccept.visibility = View.GONE
+                _b.btnDownload.setOnClickListener {
+                    val pdf = data.file.toUri()
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.setDataAndType(pdf, "application/pdf")
+                    intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+                    startActivity(intent)
+                }
             }
-
-            val kateg_id = data.kategori_id
-            vmSurat.showKategori(kateg_id).observe(this@_actvShow, Observer { peak ->
-                _b.dtKeperluan.text = peak.nama
-            })
-
-            Log.d(TAG, "kategori id: ${data.kategori_id}")
+            _b.dtKeperluan.text = data.kategori_name
         })
     }
 }

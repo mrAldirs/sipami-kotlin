@@ -234,12 +234,13 @@
                         app:cardBackgroundColor="#D3D3D3">
 
                     <ImageView
+                            android:id="@+id/ic_download"
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:layout_margin="10dp"
-                            android:src="@drawable/ic_pdf"/>
+                            android:layout_margin="10dp"/>
 
                     <TextView
+                            android:id="@+id/txt_download"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Download"

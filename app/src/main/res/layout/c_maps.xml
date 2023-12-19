@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.chip.Chip
+            android:id="@+id/chip"
+            android:layout_width="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_height="16dp"
+            android:checkable="true"
+            android:elevation="6dp"
+            android:text="Live Update"
+            android:visibility="visible"
+            app:checkedIconVisible="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/fab"
+            android:layout_alignBottom="@+id/fab"
+            android:layout_alignTop="@+id/fab"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@android:drawable/ic_menu_myplaces"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
+            tools:ignore="ContentDescription"
+            android:focusable="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"/>
+
+    <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/mapsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="8dp"
+            android:background="#FFFFFF"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:layout_alignParentTop="true"
+            tools:ignore="Autofill"
+            android:minHeight="48dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabMap1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:clickable="true"
+            android:layout_below="@id/editText"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/baseline_map_24"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabMap2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:layout_marginEnd="16dp"
+            android:layout_below="@id/fabMap1"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/outline_map_24"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabMap3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/twotone_map_24"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_below="@id/fabMap2"
+            android:layout_alignParentEnd="true"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabMapDrawPolyline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:layout_marginEnd="16dp"
+            android:layout_below="@id/fabMap3"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/baseline_polyline_24"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabMapDrawPolygon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:layout_marginEnd="16dp"
+            android:layout_below="@id/fabMapDrawPolyline"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/outline_rectangle_24"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabMapDrawCircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:layout_marginEnd="16dp"
+            android:layout_below="@id/fabMapDrawPolygon"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/outline_circle_24"/>
+
+</RelativeLayout>

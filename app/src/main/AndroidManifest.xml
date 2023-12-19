@@ -21,6 +21,14 @@
             android:theme="@style/Theme.Sipami"
             tools:targetApi="31">
 
+        <meta-data
+                android:name="com.google.android.gms.version"
+                android:value="@integer/google_play_services_version" />
+
+        <meta-data
+                android:name="com.google.android.geo.API_KEY"
+                android:value="AIzaSyDmcXgQN8gm5zhAnryw0ntBsORQXXsf260" />
+
         <service
                 android:name=".utils.custom.FirebaseCloudMessaging"
                 android:exported="true">
@@ -52,6 +60,11 @@
                   android:screenOrientation="portrait"/>
         <activity android:name=".views.colleger.surat._actvUpdate"
                   android:screenOrientation="portrait"/>
+        <activity android:name=".views.colleger.activity._actvWebView"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".views.colleger.layout._actvMaps"
+                  android:screenOrientation="portrait"
+                  android:exported="true"/>
 
 
         <activity android:name=".views.admin.layout._actvMain"
@@ -59,6 +72,10 @@
         <activity android:name=".views.admin.surat._actvSurat"
                   android:screenOrientation="portrait"/>
         <activity android:name=".views.admin.surat._actvShow"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".views.admin.surat._actvHistory"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".views.admin.file._actvFile"
                   android:screenOrientation="portrait"/>
     </application>
 

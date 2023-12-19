@@ -73,11 +73,7 @@ class _actvShow : AppCompatActivity(), IntentHelper {
             } else {
                 _b.btnEdit.visibility = View.GONE
             }
-
-            var id_kat = data.kategori_id
-            vmSurat.showKategori(id_kat).observe(this@_actvShow, Observer { peak ->
-                _b.dtKeperluan.text = peak.nama
-            })
+            _b.dtKeperluan.text = data.kategori_name
         })
     }
 }
