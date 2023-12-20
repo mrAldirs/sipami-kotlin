@@ -64,7 +64,7 @@ class __surat___ {
         return resultLiveData
     }
 
-    fun deleteKategori(id: String): LiveData<Boolean> {
+    fun deleteKg(id: String): LiveData<Boolean> {
         val resultLiveData = MutableLiveData<Boolean>()
 
         firestore.collection(Data.kategori)
@@ -84,11 +84,11 @@ class __surat___ {
         val resultLiveData = MutableLiveData<Boolean>()
 
         val hm = HashMap<String,Any>()
-        hm.put("id", kategori.id)
+        hm.set("id", kategori.id)
         hm.set("nama", kategori.nama)
 
         firestore.collection(Data.kategori)
-            .document()
+            .document(kategori.id)
             .set(hm)
             .addOnSuccessListener {
                 resultLiveData.value = true

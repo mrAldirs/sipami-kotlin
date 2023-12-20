@@ -42,8 +42,8 @@ class Surat : ViewModel() {
         return __surat.loadKategori()
     }
 
-    fun deleteKategori(id: String): LiveData<Boolean> {
-        return __surat.deleteKategori(id)
+    fun deleteKg(id: String): LiveData<Boolean> {
+        return __surat.deleteKg(id)
     }
 
     fun insertKategori(kategori: mKategori): LiveData<Boolean> {

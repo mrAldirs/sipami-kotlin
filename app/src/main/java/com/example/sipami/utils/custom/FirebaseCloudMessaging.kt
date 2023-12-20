@@ -21,7 +21,6 @@ class FirebaseCloudMessaging : FirebaseMessagingService() {
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         Log.d("FCM Token", "FCM Token: $token")
-        Toast.makeText(this, token, Toast.LENGTH_SHORT).show()
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
@@ -44,24 +43,14 @@ class FirebaseCloudMessaging : FirebaseMessagingService() {
             notificationManager.createNotificationChannel(channel)
         }
 
+        val notificationId = System.currentTimeMillis().toInt()
         val notificationBuilder = NotificationCompat.Builder(this, "YourChannelId")
             .setContentTitle(title)
             .setContentText(body)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setSmallIcon(R.drawable.ic_notif)
+            .setSmallIcon(android.R.drawable.ic_notification_overlay)
             .setAutoCancel(true)
 
-        val intent = Intent(this, _actvShow::class.java)
-        intent.putExtra("id", _actvSurat().uuid)
-
-        val pendingIntentFlags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            PendingIntent.FLAG_IMMUTABLE
-        } else {
-            0
-        }
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, pendingIntentFlags)
-
-        notificationBuilder.setContentIntent(pendingIntent)
-        notificationManager.notify(0, notificationBuilder.build())
+        notificationManager.notify(notificationId, notificationBuilder.build())
     }
 }

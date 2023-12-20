@@ -27,7 +27,7 @@ class _fragKategori : BottomSheetDialogFragment() {
 
         _b.btnSubmit.setOnClickListener {
             val dataList = mKategori(
-                UUID.randomUUID().toString(),
+                UUID.randomUUID().toString().substring(0, 16),
                 _b.insKategori.text.toString()
             )
 

@@ -11,8 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sipami.R
 import com.example.sipami.models.mKategori
 import com.example.sipami.views.admin.layout._actvMain
+import com.google.firebase.firestore.FirebaseFirestore
 
-class AdpKategori(private var dataList: List<mKategori>, private val remote: _actvMain) :
+class AdpKategori(private var dataList: List<mKategori>, val remote: _actvMain) :
     RecyclerView.Adapter<AdpKategori.HolderDataRiwayat>(){
     class HolderDataRiwayat (v : View) : RecyclerView.ViewHolder(v) {
         val kategori = v.findViewById<TextView>(R.id.tv_kategori)
@@ -37,8 +38,13 @@ class AdpKategori(private var dataList: List<mKategori>, private val remote: _ac
                 .setTitle("Hapus Kategori")
                 .setMessage("Apakah anda yakin ingin menghapus kategori ini?")
                 .setPositiveButton("Ya") { dialog, which ->
-                    remote.delete(data.id)
-                    Toast.makeText(it.context, data.id, Toast.LENGTH_SHORT).show()
+                    FirebaseFirestore.getInstance().collection("kategori").document(data.id).delete()
+                        .addOnSuccessListener {
+                            Toast.makeText(remote, "Berhasil menghapus kategori", Toast.LENGTH_SHORT).show()
+                            remote.recreate()
+                        }
+                        .addOnFailureListener {
+                        }
                 }
                 .setNegativeButton("Tidak") { dialog, which ->
                     dialog.dismiss()

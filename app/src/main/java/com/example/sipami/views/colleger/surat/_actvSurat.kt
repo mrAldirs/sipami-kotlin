@@ -33,7 +33,7 @@ class _actvSurat : AppCompatActivity(), IntentHelper {
     private lateinit var datePickerHelper: DatePickerHelper
     private val kategoriId = mutableListOf<String>()
     private var getKategori = ""
-    val uuid = UUID.randomUUID().toString().substring(0, 8)
+    val uuid = UUID.randomUUID().toString().substring(0, 16)
 
     val semester = arrayOf("Pilih Semester","1","2","3","4","5","6","7","8")
     lateinit var adapter: ArrayAdapter<String>
@@ -81,7 +81,7 @@ class _actvSurat : AppCompatActivity(), IntentHelper {
 
     fun notifikasiMessage() {
         val queue = Volley.newRequestQueue(this)
-        val url = "http://192.168.0.105/api_fcm/notification_json.php"
+        val url = "http://192.168.137.1/api_fcm/notification_json.php"
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
             if (task.isSuccessful) {

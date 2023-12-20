@@ -58,7 +58,7 @@ dependencies {
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
     implementation ("com.google.firebase:firebase-storage:20.3.0")
     implementation ("com.google.firebase:firebase-auth-ktx")
-    implementation ("com.google.firebase:firebase-messaging:23.3.0")
+    implementation ("com.google.firebase:firebase-messaging:23.4.0")
     implementation("com.google.firebase:firebase-inappmessaging-display-ktx")
     implementation("com.google.firebase:firebase-config-ktx")
     implementation ("com.github.mumayank:AirLocation:1.3")

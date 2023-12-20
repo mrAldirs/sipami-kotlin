@@ -23,6 +23,7 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.firebase.firestore.FirebaseFirestore
 
 class _actvMain : AppCompatActivity(), IntentHelper {
 
@@ -144,10 +145,7 @@ class _actvMain : AppCompatActivity(), IntentHelper {
         return super.onOptionsItemSelected(item)
     }
 
-    fun delete(id: String) {
-        vmSurat.deleteKategori(id).observe(this, Observer { data ->
-            recreate()
-            Toast.message("Berhasil menghapus kategori")
-        })
+    fun deleteKategori(id: String) {
+
     }
 }
