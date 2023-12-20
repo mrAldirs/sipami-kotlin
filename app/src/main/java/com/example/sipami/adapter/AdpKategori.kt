@@ -1,19 +1,16 @@
 package com.example.sipami.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.cardview.widget.CardView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sipami.R
 import com.example.sipami.models.mKategori
-import com.example.sipami.models.mSurat
 import com.example.sipami.views.admin.layout._actvMain
-import com.example.sipami.views.admin.surat._actvHistory
-import com.example.sipami.views.admin.surat._actvSurat
 
 class AdpKategori(private var dataList: List<mKategori>, private val remote: _actvMain) :
     RecyclerView.Adapter<AdpKategori.HolderDataRiwayat>(){
@@ -36,7 +33,17 @@ class AdpKategori(private var dataList: List<mKategori>, private val remote: _ac
         holder.kategori.setText(data.nama)
 
         holder.del.setOnClickListener {
-            remote.delete(data.id)
+            AlertDialog.Builder(remote)
+                .setTitle("Hapus Kategori")
+                .setMessage("Apakah anda yakin ingin menghapus kategori ini?")
+                .setPositiveButton("Ya") { dialog, which ->
+                    remote.delete(data.id)
+                    Toast.makeText(it.context, data.id, Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Tidak") { dialog, which ->
+                    dialog.dismiss()
+                }
+                .show()
         }
     }
 

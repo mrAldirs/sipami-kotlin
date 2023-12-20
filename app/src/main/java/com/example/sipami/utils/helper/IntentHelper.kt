@@ -88,6 +88,12 @@ interface IntentHelper {
     }
 
     fun Context.himaAction(): Intent {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(URLCustom.HIMA_URL)
+        return intent
+    }
+
+    fun Context.webviewAction(): Intent {
         return Intent(this, _actvWebView::class.java)
     }
 

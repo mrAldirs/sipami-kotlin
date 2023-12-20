@@ -146,12 +146,8 @@ class _actvMain : AppCompatActivity(), IntentHelper {
 
     fun delete(id: String) {
         vmSurat.deleteKategori(id).observe(this, Observer { data ->
-            if (data) {
-                recreate()
-                Toast.message("Berhasil menghapus kategori")
-            } else {
-                Toast.message("Gagal menghapus kategori")
-            }
+            recreate()
+            Toast.message("Berhasil menghapus kategori")
         })
     }
 }

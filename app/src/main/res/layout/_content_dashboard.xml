@@ -38,7 +38,7 @@
                 android:layout_height="match_parent"/>
 
         <LinearLayout
-                android:id="@+id/btn_riwayat"
+                android:id="@+id/btn_webView"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
                 android:orientation="vertical"
@@ -53,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Riwayat"/>
+                    android:text="Web View"/>
         </LinearLayout>
 
         <Space

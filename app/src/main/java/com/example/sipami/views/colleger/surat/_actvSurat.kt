@@ -1,6 +1,7 @@
 package com.example.sipami.views.colleger.surat
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -20,6 +21,7 @@ import com.example.sipami.utils.helper.DatePickerHelper
 import com.example.sipami.utils.helper.IntentHelper
 import com.example.sipami.utils.helper.SharedPreferences
 import com.example.sipami.utils.helper.Toast
+import com.google.firebase.messaging.FirebaseMessaging
 import java.util.*
 
 class _actvSurat : AppCompatActivity(), IntentHelper {
@@ -31,7 +33,7 @@ class _actvSurat : AppCompatActivity(), IntentHelper {
     private lateinit var datePickerHelper: DatePickerHelper
     private val kategoriId = mutableListOf<String>()
     private var getKategori = ""
-    val uuid = UUID.randomUUID().toString()
+    val uuid = UUID.randomUUID().toString().substring(0, 8)
 
     val semester = arrayOf("Pilih Semester","1","2","3","4","5","6","7","8")
     lateinit var adapter: ArrayAdapter<String>
@@ -79,20 +81,28 @@ class _actvSurat : AppCompatActivity(), IntentHelper {
 
     fun notifikasiMessage() {
         val queue = Volley.newRequestQueue(this)
+        val url = "http://192.168.0.105/api_fcm/notification_json.php"
 
-        val url = "http://192.168.137.1/api_sipami/notification_json.php"
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val token = task.result
+                val postData = HashMap<String, String>()
+                postData["fcm_token"] = token ?: ""
 
-        val postData = HashMap<String, String>()
+                val request = object : StringRequest(Method.POST, url, Response.Listener { response ->
+                }, Response.ErrorListener { error ->
+                }) {
+                    override fun getParams(): Map<String, String> {
+                        return postData
+                    }
+                }
 
-        val request = object : StringRequest(Method.POST, url, Response.Listener { response ->
-        }, Response.ErrorListener { error ->
-        }) {
-            override fun getParams(): Map<String, String> {
-                return postData
+                queue.add(request)
+            } else {
+                val exception = task.exception
+                Log.e("Exception", exception.toString())
             }
         }
-
-        queue.add(request)
     }
 
     override fun onStart() {

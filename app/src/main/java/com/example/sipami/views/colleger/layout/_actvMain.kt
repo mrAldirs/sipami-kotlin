@@ -51,6 +51,7 @@ class _actvMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSele
         kegiatan()
         notelpon()
         matkul()
+        webView()
 
         _b.bottomNavigasi.setOnNavigationItemSelectedListener(this)
     }
@@ -70,6 +71,12 @@ class _actvMain : AppCompatActivity(), BottomNavigationView.OnNavigationItemSele
     private fun kegiatan() {
         _b_content.btnKegiatan.setOnClickListener {
             intentActivity(himaAction())
+        }
+    }
+
+    private fun webView() {
+        _b_content.btnWebView.setOnClickListener {
+            intentActivity(webviewAction())
         }
     }
 
