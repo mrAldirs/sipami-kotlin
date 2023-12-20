@@ -32,7 +32,7 @@ class __surat___ {
                         .addOnSuccessListener { sizeResult ->
                             val total = sizeResult.size()
 
-                            val data = mSurat.__mChartModel(name, total.toLong())
+                            val data = mSurat.__mChartModel(name.substring(0, minOf(name.length, 6)), total.toLong())
                             dataList.add(data)
 
                             val sortedDataList = dataList.sortedByDescending { it.count }.take(5)
