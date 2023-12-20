@@ -50,6 +50,16 @@ interface IntentHelper {
         return intent
     }
 
+    fun Context.documentAdmin(): Intent {
+        val intent = Intent(this, com.example.sipami.views.admin.document._actvDocument::class.java)
+        return intent
+    }
+
+    fun Context.mahasiswaAdmin(): Intent {
+        val intent = Intent(this, com.example.sipami.views.admin.mahasiswa._actvMahasiswa::class.java)
+        return intent
+    }
+
     fun Context.suratFileAdmin(): Intent {
         val intent = Intent(this, com.example.sipami.views.admin.file._actvFile::class.java)
         return intent
@@ -105,4 +115,5 @@ interface IntentHelper {
         )
         startActivity(intent, options.toBundle())
     }
+
 }

@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.sipami.api.repository.__profil___
+import com.example.sipami.models.mMahasiswa
 import com.example.sipami.models.mProfil
 
 class Profil: ViewModel() {
@@ -19,5 +20,9 @@ class Profil: ViewModel() {
 
     fun edit(profil: mProfil, uri: Uri?) : LiveData<Boolean> {
         return __profil.edit(profil, uri)
+    }
+
+    fun loadMahasiswa() : LiveData<List<mMahasiswa>> {
+        return __profil.loadMahasiswa()
     }
 }

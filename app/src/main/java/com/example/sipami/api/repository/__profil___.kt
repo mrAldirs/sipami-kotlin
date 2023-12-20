@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.sipami.api.global.Config
 import com.example.sipami.api.global.Data
+import com.example.sipami.models.mMahasiswa
 import com.example.sipami.models.mProfil
 import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
@@ -67,6 +68,30 @@ class __profil___ {
             }
             .addOnFailureListener { exception ->
                 // Handle failure if needed
+            }
+
+        return resultLiveData
+    }
+
+    fun loadMahasiswa() : LiveData<List<mMahasiswa>> {
+        val resultLiveData = MutableLiveData<List<mMahasiswa>>()
+
+        fr.collection(profil)
+            .get()
+            .addOnSuccessListener { documents ->
+                val dataList = mutableListOf<mMahasiswa>()
+                for (doc in documents) {
+                    val data = mMahasiswa(
+                        doc.getString("id").toString(),
+                        doc.getString("nama").toString(),
+                        doc.getString("nim").toString(),
+                        doc.getString("foto").toString()
+                    )
+                    dataList.add(data)
+                }
+                resultLiveData.value = dataList
+            }
+            .addOnFailureListener { exception ->
             }
 
         return resultLiveData

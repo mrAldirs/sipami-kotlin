@@ -38,10 +38,8 @@ class _fragAcc : BottomSheetDialogFragment() {
             startActivityForResult(intent, 10)
         }
 
-        val nos = _b.insNos.text.toString()
-
         _b.btnKonfirmasi.setOnClickListener {
-            vmSurat.uploadFile(kode, nos, uri).observe(this, Observer {
+            vmSurat.uploadFile(kode, _b.insNos.text.toString(), uri).observe(this, Observer {
                 Toast.message("Berhasil mengkonfirmasi pengajuan surat")
                 dismiss()
                 requireActivity().recreate()

@@ -18,6 +18,10 @@
 
         <menu>
             <item
+                    android:id="@+id/nav_build"
+                    android:title="Buat Dokumen"/>
+
+            <item
                     android:id="@+id/nav_surat_masuk"
                     android:title="Surat Masuk"/>
 

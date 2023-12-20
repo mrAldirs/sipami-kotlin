@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission
-        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
-        tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+                     tools:ignore="ScopedStorage"/>
 
     <application
             android:usesCleartextTraffic="true"
@@ -76,6 +75,11 @@
         <activity android:name=".views.admin.surat._actvHistory"
                   android:screenOrientation="portrait"/>
         <activity android:name=".views.admin.file._actvFile"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".views.admin.document._actvDocument"
+                  android:screenOrientation="portrait"
+                  android:exported="true"/>
+        <activity android:name="com.example.sipami.views.admin.mahasiswa._actvMahasiswa"
                   android:screenOrientation="portrait"/>
     </application>
 

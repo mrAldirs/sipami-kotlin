@@ -127,7 +127,7 @@ class __surat___ {
         hm.set("semester", surat.semester)
         hm.set("alasan", surat.alasan)
         hm.set("status", surat.status)
-        hm.set("nama_surat", "")
+        hm.set("nomor_surat", "")
         hm.set("file", "")
 
         firestore.collection(Data.surat)
@@ -154,6 +154,7 @@ class __surat___ {
         hm.set("semester", surat.semester)
         hm.set("alasan", surat.alasan)
         hm.set("status", surat.status)
+        hm.set("nomor_surat", "")
         hm.set("file", "")
 
         firestore.collection(Data.surat)

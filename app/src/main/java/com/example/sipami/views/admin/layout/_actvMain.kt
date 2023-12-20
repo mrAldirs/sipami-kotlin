@@ -64,6 +64,12 @@ class _actvMain : AppCompatActivity(), IntentHelper {
                 R.id.nav_home -> {
                     _b.drawerLayout.closeDrawer(GravityCompat.START)
                 }
+                R.id.nav_user_admin -> {
+                    intentActivity(mahasiswaAdmin())
+                }
+                R.id.nav_build -> {
+                    intentActivity(documentAdmin())
+                }
                 R.id.nav_surat_masuk -> {
                     intentActivity(suratMainAdmin())
                 }
